@@ -9,19 +9,12 @@ public class Ejercicio2 implements Runnable{
     public void run() {
         System.out.println("Se está ejecutando el hilo: "+ Thread.currentThread().getName());
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("Fin del hilo: "+ Thread.currentThread().getName());
-
     }
 
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
 
         Runnable ejercicio2= new Ejercicio2();
 
@@ -30,6 +23,12 @@ public class Ejercicio2 implements Runnable{
 
         hilo1.start();
         hilo2.start();
+
+        hilo1.sleep(100);// llamamos al método sleep del hilo 1 durante 100ms para asegurarnos de que el hilo2 se lanzará mientras se sigue ejecutando el hilo1
+
+
+
+
 
     }
 
