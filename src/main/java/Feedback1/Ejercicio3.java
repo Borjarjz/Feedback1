@@ -1,5 +1,8 @@
 package Feedback1;
 
+
+//Borja Rodriguez Jimenez
+//Realiza una aplicación que ejecute 4 hilos de forma que se ejecuten de forma ordenada uno detrás de otro esperando cada uno a que termine el anterior para ejecutarse
 public class Ejercicio3 implements Runnable{
 
 
@@ -12,7 +15,7 @@ public class Ejercicio3 implements Runnable{
 
 
     public static void main(String[] args) throws InterruptedException {
-        //inmstanciamos el hilo principal que implementa Runnable
+        //instanciamos el hilo principal que implementa Runnable
         Runnable ejercicio3= new Ejercicio3();
 
 
