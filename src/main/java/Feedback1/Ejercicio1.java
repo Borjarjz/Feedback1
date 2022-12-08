@@ -21,20 +21,26 @@ import java.awt.event.ActionListener;
 
 public class Ejercicio1 implements ActionListener,Runnable{
 
+
+
+
     public Ejercicio1() {//constructor
 
 
 
         JFrame frame =new JFrame("Ejercicio1");
         JPanel panel=new JPanel();
-        JButton button1=new JButton("Cancelar");
+        JButton cancelar=new JButton("Cancelar");
+        JButton cuentaatras=new JButton("Cuenta Atrás");
+        JTextField texto=new JTextField(20);
 
 
-
-        button1.addActionListener(this);
+        cancelar.addActionListener(this);
+        texto.setBounds(100,20,165,25);
         panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
         panel.setLayout(new GridLayout(0,1));
-        panel.add(button1);
+        panel.add(cancelar);
+        panel.add(texto);
         frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -72,6 +78,9 @@ public class Ejercicio1 implements ActionListener,Runnable{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //ACCION DE CANCELAR
+
+        if (e.getActionCommand()=="Cancelar") {
+            System.exit(0);
+        }
     }
 }
