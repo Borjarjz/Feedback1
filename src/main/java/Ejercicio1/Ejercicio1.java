@@ -19,39 +19,61 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Ejercicio1 implements ActionListener,Runnable{
+public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionListener {
 
 
-
+   private JTextField texto;
+    private JProgressBar barra;
+    private int contador;
+    private JButton cancelar;
 
     public Ejercicio1() {//constructor
 
 
 
         JFrame frame =new JFrame("Ejercicio1");
+        this.barra=new JProgressBar();
+        barra.setValue(0);
+        barra.setStringPainted(true);
         JPanel panel=new JPanel();
-        JButton cancelar=new JButton("Cancelar");
+        this.cancelar=new JButton("Cancelar");
         JButton cuentaatras=new JButton("Cuenta Atrás");
-        JTextField texto=new JTextField(20);
+        this.texto=new JTextField(2);
 
 
         cancelar.addActionListener(this);
+        cuentaatras.addActionListener(this);
+        texto.addActionListener(this);
+
+
         texto.setBounds(100,20,165,25);
         panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
         panel.setLayout(new GridLayout(0,1));
-        panel.add(cancelar);
         panel.add(texto);
+        panel.add(cuentaatras);
+        panel.add(barra);
+
+
+        panel.add(cancelar);
         frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
+    @Override
+   protected Boolean doInBackground() throws Exception {
+        contador=0;
+        for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
 
+            contador++;
+            System.out.println(i);
+            barra.setValue(contador);
+            //Timer cont=new Timer(1000, ); VER ACTION LISTENER!!!!!!!!!!!!!!
 
-
-
-
+        }
+        return null;
+    }
 
 
     public static void main(String[] args) {
@@ -69,18 +91,28 @@ public class Ejercicio1 implements ActionListener,Runnable{
 
 
 
-    @Override
-    public void run() {
 
-    }
 
 
 
     @Override
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand()=="Cancelar") {
-            System.exit(0);
+
+        }else if(e.getActionCommand()=="Cuenta Atrás"){
+
+            int numCuentaatras= Integer.parseInt(texto.getText());
+            barra.setMinimum(0);
+            barra.setMaximum(Integer.parseInt(texto.getText()));
+
+
+            try {
+                doInBackground();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }
