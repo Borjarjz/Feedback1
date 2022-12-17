@@ -66,18 +66,29 @@ public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionLis
         contador=0;
         for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
 
+            Thread.currentThread().sleep(1000);
             contador++;
             System.out.println(i);
             barra.setValue(contador);
-            //Timer cont=new Timer(1000, ); VER ACTION LISTENER!!!!!!!!!!!!!!
 
         }
         return null;
     }
 
+    @Override protected void done()
+    {
+        //Cuando acabe.
+    }
+
+
+
 
     public static void main(String[] args) {
+
         new Ejercicio1();
+
+
+
     }
 
 
