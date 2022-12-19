@@ -76,6 +76,7 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
         contador=0;
 
                 for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
+
                     contador++;
                     etiqueta.setText("Quedan: "+i+" Segundos");
                     barra.setValue(contador);
@@ -110,6 +111,7 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
 
 
     public void contar() throws InterruptedException {
+
 
 
 
@@ -152,20 +154,20 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand()=="Cancelar") {
-            Ejercicio1 ej1=new Ejercicio1();
-            ej1.isCancelled();
+
+            this.isCancelled();
 
 
         }else if(e.getActionCommand()=="Cuenta Atrás"){
-            Ejercicio1 ej1=new Ejercicio1();
 
-            ej1.numCuentaatras= Integer.parseInt(texto.getText());
-            ej1.barra.setMinimum(0);
-            ej1.barra.setMaximum(Integer.parseInt(texto.getText()));
+
+            this.numCuentaatras= Integer.parseInt(texto.getText());
+            this.barra.setMinimum(0);
+            this.barra.setMaximum(Integer.parseInt(texto.getText()));
 
 
             try {
-                ej1.doInBackground();
+                this.doInBackground();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
