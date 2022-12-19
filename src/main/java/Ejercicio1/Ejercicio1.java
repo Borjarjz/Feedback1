@@ -18,27 +18,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionListener {
+public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionListener {
 
 
    private JTextField texto;
     private JProgressBar barra;
     private int contador;
     private JButton cancelar;
+    private JLabel etiqueta;
+    JFrame frame ;
+    JButton cuentaatras;
+    JPanel panel;
+    private int numCuentaatras;
 
     public Ejercicio1() {//constructor
 
 
 
-        JFrame frame =new JFrame("Ejercicio1");
-        this.barra=new JProgressBar();
+        frame =new JFrame("Ejercicio1");
+        barra=new JProgressBar();
         barra.setValue(0);
         barra.setStringPainted(true);
-        JPanel panel=new JPanel();
-        this.cancelar=new JButton("Cancelar");
-        JButton cuentaatras=new JButton("Cuenta Atrás");
-        this.texto=new JTextField(2);
+        etiqueta=new JLabel();
+        panel=new JPanel();
+        cancelar=new JButton("Cancelar");
+        cuentaatras=new JButton("Cuenta Atrás");
+        texto=new JTextField(2);
 
 
         cancelar.addActionListener(this);
@@ -50,8 +57,11 @@ public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionLis
         panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
         panel.setLayout(new GridLayout(0,1));
         panel.add(texto);
+
         panel.add(cuentaatras);
+        panel.add(etiqueta);
         panel.add(barra);
+
 
 
         panel.add(cancelar);
@@ -62,16 +72,34 @@ public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionLis
     }
 
     @Override
-   protected Boolean doInBackground() throws Exception {
+   protected String doInBackground() throws Exception {
         contador=0;
-        for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
 
-            Thread.currentThread().sleep(1000);
-            contador++;
-            System.out.println(i);
-            barra.setValue(contador);
+                for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
+                    contador++;
+                    etiqueta.setText("Quedan: "+i+" Segundos");
+                    barra.setValue(contador);
+                    cuentaatras.setEnabled(true);
+                    cancelar.setEnabled(true);
+                    barra.setEnabled(true);
+                    etiqueta.setEnabled(true);
 
-        }
+
+                    System.out.println(i);
+
+
+                    Thread.sleep(1000);
+
+                }
+
+                if(isCancelled()){
+
+                    etiqueta.setText("¡¡¡¡SE HA CANCELADO LA CUENTA!!!!");
+                } else if (isDone()) {
+                    etiqueta.setText("¡¡¡¡SE HA TERMINADO LA CUENTA!!!!");
+                }
+
+
         return null;
     }
 
@@ -81,15 +109,28 @@ public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionLis
     }
 
 
+    public void contar() throws InterruptedException {
+
+
+
+
+    }
+
+
+
+
 
 
     public static void main(String[] args) {
+
+
 
         new Ejercicio1();
 
 
 
-    }
+
+            }
 
 
 
@@ -111,19 +152,25 @@ public class Ejercicio1 extends SwingWorker<Boolean,Object> implements ActionLis
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand()=="Cancelar") {
+            Ejercicio1 ej1=new Ejercicio1();
+            ej1.isCancelled();
+
 
         }else if(e.getActionCommand()=="Cuenta Atrás"){
+            Ejercicio1 ej1=new Ejercicio1();
 
-            int numCuentaatras= Integer.parseInt(texto.getText());
-            barra.setMinimum(0);
-            barra.setMaximum(Integer.parseInt(texto.getText()));
+            ej1.numCuentaatras= Integer.parseInt(texto.getText());
+            ej1.barra.setMinimum(0);
+            ej1.barra.setMaximum(Integer.parseInt(texto.getText()));
 
 
             try {
-                doInBackground();
+                ej1.doInBackground();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }
     }
+
+
 }
