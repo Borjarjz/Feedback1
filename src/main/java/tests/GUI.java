@@ -1,4 +1,4 @@
-package Barra;
+package tests;
 
 import javax.swing.*;
 import java.awt.*;
