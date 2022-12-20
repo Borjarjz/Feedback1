@@ -36,26 +36,25 @@ public class Main {
         JTextField texto=new JTextField();
 
 
-
+        segundoplano = new BarraProgreso(barra, label, texto);
 
 
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    segundoplano = new BarraProgreso(barra, label, texto);
-                    segundoplano.execute();
+
+
+
 
                     if (e.getActionCommand() == "Empezar") {
-                        //segundoplano.doInBackground();
+                        segundoplano.execute();
+
                     }
                     if (e.getActionCommand() == "Cancelar") {
 
                         segundoplano.cancel(true);
 
                     }
-                }catch(Exception eu){
-                    throw new RuntimeException(eu);
-                }
+
 
             }
         };

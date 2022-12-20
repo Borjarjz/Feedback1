@@ -31,37 +31,21 @@ public class BarraProgreso extends SwingWorker<Void,Void> {
     protected Void doInBackground() throws Exception {
         contador=0;
         barra.setMaximum(Integer.parseInt(texto.getText()));
-        for (int i = Integer.parseInt(texto.getText()); i >=0 ; i--) {
-            contador++;
-            label.setText("Quedan: "+i+" Segundos");
-            barra.setValue(contador);
 
-            if(isCancelled()){
-                Thread.sleep(1);
-                label.setText("¡¡¡¡SE HA CANCELADO LA CUENTA!!!!");
+                    for (int i = Integer.parseInt(texto.getText()); i >=0 ; i--) {
+                        contador++;
+                        label.setText("Quedan: "+i+" Segundos");
+                        barra.setValue(contador);
 
-                break;
-                //contador=0;
+                        if(isCancelled()==true){
 
-            }
+                            label.setText("¡¡¡¡SE HA CANCELADO LA CUENTA!!!!");
+                            break;
 
+                        }
+                            Thread.sleep(1000);
 
-                Thread.sleep(1000);
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-
+                    }
         return null;
     }
 
