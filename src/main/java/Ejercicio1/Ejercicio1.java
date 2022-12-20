@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionListener {
+public class Ejercicio1 extends SwingWorker<Void,Void> implements ActionListener {
 
 
    private JTextField texto;
@@ -72,7 +72,7 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
     }
 
     @Override
-   protected String doInBackground() throws Exception {
+   protected Void doInBackground() throws Exception {
         contador=0;
 
                 for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
@@ -80,15 +80,8 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
                     contador++;
                     etiqueta.setText("Quedan: "+i+" Segundos");
                     barra.setValue(contador);
-                    cuentaatras.setEnabled(true);
-                    cancelar.setEnabled(true);
-                    barra.setEnabled(true);
                     etiqueta.setEnabled(true);
-
-
                     System.out.println(i);
-
-
                     Thread.sleep(1000);
 
                 }
@@ -127,7 +120,7 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
 
 
 
-        new Ejercicio1();
+        new Ejercicio1().execute();
 
 
 
@@ -167,7 +160,7 @@ public class Ejercicio1 extends SwingWorker<String,Integer> implements ActionLis
 
 
             try {
-                this.doInBackground();
+                doInBackground();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
