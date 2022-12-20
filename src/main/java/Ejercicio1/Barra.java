@@ -1,7 +1,7 @@
 package Ejercicio1;
 
 import javax.swing.*;
-
+import java.util.concurrent.CancellationException;
 public class Barra extends SwingWorker<Void,Void> {
 
     JProgressBar barra;
@@ -19,27 +19,40 @@ public class Barra extends SwingWorker<Void,Void> {
     protected Void doInBackground() throws Exception {
         contador=0;
         barra.setMaximum(Integer.parseInt(texto.getText()));
-        for (int i = Integer.parseInt(texto.getText()); i >0 ; i--) {
+        for (int i = Integer.parseInt(texto.getText()); i >=0 ; i--) {
             contador++;
             label.setText("Quedan: "+i+" Segundos");
             barra.setValue(contador);
+
             if(isCancelled()){
+                Thread.sleep(1);
                 label.setText("¡¡¡¡SE HA CANCELADO LA CUENTA!!!!");
+
                 break;
+                //contador=0;
 
             }
-            Thread.sleep(1000);
+
+
+                Thread.sleep(1000);
+
+
 
 
 
 
         }
-        if (isDone()) {
-            label.setText("¡¡¡¡SE HA TERMINADO LA CUENTA!!!!");
-        }
+
+
+
+
+
+
+
 
         return null;
     }
+
 
 
 }

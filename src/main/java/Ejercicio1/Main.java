@@ -29,17 +29,21 @@ public class Main {
 
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                segundoplano=new Barra(barra,label,texto);
-                segundoplano.execute();
+                try {
+                    segundoplano = new Barra(barra, label, texto);
+                    segundoplano.execute();
 
-                if(e.getActionCommand() == "Empezar"){
+                    if (e.getActionCommand() == "Empezar") {
+                        //segundoplano.doInBackground();
+                    }
+                    if (e.getActionCommand() == "Cancelar") {
 
+                        segundoplano.cancel(true);
+
+                    }
+                }catch(Exception eu){
+                    throw new RuntimeException(eu);
                 }
-                if(e.getActionCommand() == "Cancelar"){
-                    segundoplano.cancel(true);
-
-                }
-
 
             }
         };
