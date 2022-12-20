@@ -1,15 +1,15 @@
 package Ejercicio1;
 
 import javax.swing.*;
-import java.util.concurrent.CancellationException;
-public class Barra extends SwingWorker<Void,Void> {
+
+public class BarraProgreso extends SwingWorker<Void,Void> {
 
     JProgressBar barra;
     JLabel label;
     JTextField texto;
     int contador=0;
 
-    public Barra(JProgressBar barra, JLabel label,JTextField texto) {
+    public BarraProgreso(JProgressBar barra, JLabel label, JTextField texto) {
         this.barra = barra;
         this.label = label;
         this.texto=texto;

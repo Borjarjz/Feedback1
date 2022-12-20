@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
-    static Barra segundoplano;
+    static BarraProgreso segundoplano;
 
     public static void main(String args[]) {
         JFrame frame = new JFrame("GUI");
@@ -30,7 +30,7 @@ public class Main {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    segundoplano = new Barra(barra, label, texto);
+                    segundoplano = new BarraProgreso(barra, label, texto);
                     segundoplano.execute();
 
                     if (e.getActionCommand() == "Empezar") {
