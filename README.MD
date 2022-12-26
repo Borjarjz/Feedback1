@@ -1,7 +1,13 @@
 BORJA RODRIGUEZ JIMENEZ
 PROGRAMACIÓN CONCURRENTE - FEEDBACK1
+
+En la carpeta /src/main/java se encuentran los paquetes Ejercici1 Ejercicio2 y Ejercicio 3 correspondientes a los mismos.
+
 Comentarios en el código...
 
+
+
+Enunciado:
 Ejercicio1.
 
    Realiza una aplicación en la que se muestre, mediante una barra de progreso y una etiqueta de texto, la cuenta atrás desde una cantidad de segundos introducida por el usuario. En cualquier momento éste podrá cancelar la cuenta:
