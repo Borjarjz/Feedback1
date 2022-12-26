@@ -21,9 +21,9 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
-    static BarraProgreso segundoplano;
+    static BarraProgreso segundoplano;//se define un objeto BarraProgreso(que hereda de SwingWorker) que almacenará los cambio en la progressbar y los ira actualizando en timepo real(en segundo plano)
 
-    public static void main(String args[]) {
+    public static void main(String args[]) {//método MAIN, se definen aspectos de la interfaz grafica
         JFrame frame = new JFrame("GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -36,27 +36,27 @@ public class Main {
         JTextField texto=new JTextField();
 
 
-        segundoplano = new BarraProgreso(barra, label, texto);
+        segundoplano = new BarraProgreso(barra, label, texto);//se instancia un objeto BarraProgreso
 
 
 
 
-        ActionListener actionListener = new ActionListener() {
+        ActionListener actionListener = new ActionListener() {//actionListener para realizar acciones al clickar los botones Empezar y Cancelar
             public void actionPerformed(ActionEvent e) {
 
 
 
 
-                    if (e.getActionCommand() == "Empezar") {
+                    if (e.getActionCommand() == "Empezar") {//si se pulsa EmpezaR, se ejecuta el metodo doInBackground de la clase BarraProgreso
 
                         segundoplano.execute();
 
                     }
-                    if (e.getActionCommand() == "Cancelar") {
+                    if (e.getActionCommand() == "Cancelar") {//Al pulsar cancelar, se llama al metodo cancel de la clase BarraProgreso(heredado de SwingWorker)
 
                         segundoplano.cancel(true);
-                        barra.setValue(0);
-                        label.setText("Se ha cancelado la cuenta!!!");
+                        barra.setValue(0);//se devuelve la barra de progreso a 0
+                        label.setText("Se ha cancelado la cuenta!!!");// se escribe el mensaje de cancelación en el label
 
                     }
 
@@ -64,11 +64,11 @@ public class Main {
             }
         };
 
-        empezar.addActionListener(actionListener);
+        empezar.addActionListener(actionListener);//se añaden los action listener a los botones
         cancelar.addActionListener(actionListener);
 
 
-
+//Se definen más aspecto de la interfaz grafica.
         frame.setLayout(new GridLayout(0,1));
         frame.add(label);
         frame.add(texto);

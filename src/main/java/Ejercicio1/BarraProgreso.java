@@ -15,44 +15,47 @@ package Ejercicio1;
 import javax.swing.*;
 import java.awt.*;
 
-public class BarraProgreso extends SwingWorker<Void,Void> {
+public class BarraProgreso extends SwingWorker<Void,Void> {//Clase barra progreso que hereda de SwingWorker
 
+
+    //Variables que se necesitan para almacenar los cambios que se producen en timepo real en segundo plano
     JProgressBar barra;
     JLabel label;
     JTextField texto;
     int contador=0;
 
-    public BarraProgreso(JProgressBar barra, JLabel label, JTextField texto) {
+    public BarraProgreso(JProgressBar barra, JLabel label, JTextField texto) {//constructor de BarraProgreso
         this.barra = barra;
         this.label = label;
         this.texto=texto;
     }
 
     @Override
-    protected Void doInBackground() throws Exception {
-        contador=0;
-        barra.setMaximum(Integer.parseInt(texto.getText()));
+    protected Void doInBackground() throws Exception {//Metodo doInBackground sobreescrito. cuando se lanza la tarea en segundo plano, se realiza la cuenta atrás de la cantida indicada
+        contador=0;//contador para actualizar el progreso en la ProgressBar
+        barra.setMaximum(Integer.parseInt(texto.getText()));//se establece el maximo de la barra de progreso
 
-                    for (int i = Integer.parseInt(texto.getText()); i >=0 ; i--) {
+                    for (int i = Integer.parseInt(texto.getText()); i >=0 ; i--) {//bucle for que cuenta regresivamente
                         contador++;
-                        label.setText("Quedan: "+i+" Segundos");
-                        barra.setValue(contador);
+                        label.setText("Quedan: "+i+" Segundos");// se actualiza el label con la cantidad de segundos restante
+                        barra.setValue(contador); //se avanza la barra de progreso
 
 
-                            Thread.sleep(1000);
+                            Thread.sleep(1000);// se espera 1 segundo.
 
                     }
-                    avisoFin();
+                    avisoFin();// método avisoFin que genera la ventana emergente que se pide al finalizar la cuenta.
         return null;
     }
 
-    private void avisoFin() {
+    private void avisoFin() {//método avisoFin que genera la ventana emergente que se pide al finalizar la cuenta.
         JFrame frameaviso = new JFrame("aviso");
         JLabel labelaviso=new JLabel("¡¡¡SE HA TERMINADO LA CUENTA!!!");
         frameaviso.setLayout(new GridLayout(0,1));
         frameaviso.setSize(300, 200);
         frameaviso.add(labelaviso);
         frameaviso.setVisible(true);
+        frameaviso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 

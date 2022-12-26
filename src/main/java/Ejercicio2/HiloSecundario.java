@@ -1,7 +1,7 @@
 package Ejercicio2;
 
 public class HiloSecundario implements Runnable{
-    private Thread otroHilo;
+    private Thread otroHilo;//variable que almacena el hilo principal
 
 
     public HiloSecundario(Thread otroHilo) {
@@ -10,7 +10,7 @@ public class HiloSecundario implements Runnable{
 
 
     @Override
-    public void run() {
+    public void run() {//se sobreeescribe la clase run, se comprueba que el hiloPrincipal esta en ejecución y se imprime por pantalla un mensaje cada 0'5 segundos
         while (otroHilo.isAlive()) {
             System.out.println("Yo ( "+Thread.currentThread().getName()+") hago cosas mientras el hilo: "+otroHilo.getName()+" siga en ejecución");
 
@@ -21,7 +21,7 @@ public class HiloSecundario implements Runnable{
             }
         }
         System.out.println();
-        System.out.println("El hilo"+otroHilo.getName()+" ha terminado. Por tanto yo ("+Thread.currentThread().getName()+" ) también");
+        System.out.println("El hilo"+otroHilo.getName()+" ha terminado. Por tanto yo: ("+Thread.currentThread().getName()+" ) también");//cuando termina el hilo principal, tambien termina el hilo secundario y se imprime un mensaje
     }
 
 }

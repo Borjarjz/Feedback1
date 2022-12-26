@@ -6,7 +6,7 @@ public class HiloPrincipal implements Runnable{
 
 
     @Override
-    public void run() {
+    public void run() {//implementacion del método run
         for (int i = 0; i < 10; i++) {
             System.out.println("EJECUTANDO EL HILO PRINCIPAL");
             try {
@@ -20,14 +20,14 @@ public class HiloPrincipal implements Runnable{
 
 
     public static void main(String[] args) throws InterruptedException{
-        HiloPrincipal hiloPrincipal = new HiloPrincipal();
-        Thread hilo1 = new Thread(hiloPrincipal);
+        HiloPrincipal hiloPrincipal = new HiloPrincipal();//se crea un objeto HiloPrincipal
+        Thread hilo1 = new Thread(hiloPrincipal);//Se crea un Thread de hiloPrincipal
 
-        HiloSecundario tareaAlive = new HiloSecundario(hilo1);
-        Thread hilo2 = new Thread(tareaAlive);
+        HiloSecundario tareaAlive = new HiloSecundario(hilo1);//se crea un objeto HiloSecuandario y se le pasa por parametro el Thread hilo1(que necesita para saber si se está ejecutando(el hilo principal) en cada instante)
+        Thread hilo2 = new Thread(tareaAlive);//Se crea un Thread de hiloSecundario
 
         hilo1.start();
-        hilo2.start();
+        hilo2.start();//se inician los dos hilos.
     }
 
 

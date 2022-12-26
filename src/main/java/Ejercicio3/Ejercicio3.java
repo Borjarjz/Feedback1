@@ -26,7 +26,7 @@ public class Ejercicio3 implements Runnable{
         Thread hilo4= new Thread(ejercicio3,"HILO4");
 
 hilo1.start();//Se lanza el hilo1
-hilo1.join();//Se invoca al metodo Join del hilo 1 que producira que no se continue con la ejecución de las siguientes lineas hasta que el hilo1 haya concluido
+hilo1.join();//Se invoca al metodo Join del hilo 1 que producirá que no se continue con la ejecución de las siguientes lineas hasta que el hilo1 haya concluido
 
 
         //se hace lo mismo con los demás hilos
