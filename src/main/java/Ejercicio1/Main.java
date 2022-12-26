@@ -39,6 +39,8 @@ public class Main {
         segundoplano = new BarraProgreso(barra, label, texto);
 
 
+
+
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -46,12 +48,15 @@ public class Main {
 
 
                     if (e.getActionCommand() == "Empezar") {
+
                         segundoplano.execute();
 
                     }
                     if (e.getActionCommand() == "Cancelar") {
 
                         segundoplano.cancel(true);
+                        barra.setValue(0);
+                        label.setText("Se ha cancelado la cuenta!!!");
 
                     }
 
@@ -63,7 +68,7 @@ public class Main {
         cancelar.addActionListener(actionListener);
 
 
-        //frame.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
+
         frame.setLayout(new GridLayout(0,1));
         frame.add(label);
         frame.add(texto);

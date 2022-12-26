@@ -13,6 +13,7 @@
 package Ejercicio1;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class BarraProgreso extends SwingWorker<Void,Void> {
 
@@ -37,18 +38,23 @@ public class BarraProgreso extends SwingWorker<Void,Void> {
                         label.setText("Quedan: "+i+" Segundos");
                         barra.setValue(contador);
 
-                        if(isCancelled()==true){
 
-                            label.setText("¡¡¡¡SE HA CANCELADO LA CUENTA!!!!");
-                            break;
-
-                        }
                             Thread.sleep(1000);
 
                     }
+                    avisoFin();
         return null;
     }
 
+    private void avisoFin() {
+        JFrame frameaviso = new JFrame("aviso");
+        JLabel labelaviso=new JLabel("¡¡¡SE HA TERMINADO LA CUENTA!!!");
+        frameaviso.setLayout(new GridLayout(0,1));
+        frameaviso.setSize(300, 200);
+        frameaviso.add(labelaviso);
+        frameaviso.setVisible(true);
+
+    }
 
 
 }
